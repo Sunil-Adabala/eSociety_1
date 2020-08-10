@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>eSociety</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Welcome </h1>
+<br>
+<h1> In payments page..</h1>
+<!--<h2>Your due is <p th:text= "${totalAmount}" ></p></h2>-->
+
+<!--<form action="#" th:action="@{/paydue}" th:object="${payments}" method="post" class="form-signin" role="form">-->
+
+<!--    <h2>Your due is <p th:text= "${totalAmount}" ></p></h2>-->
+<!--    <input type="number" th:field="*{amount}" placeholder="Amount" />-->
+<!--    <input type="number" th:field="*{manager_id}" placeholder="Amount" />-->
+<!--    <input type="number" th:field="*{society_id}" placeholder="Amount" />-->
+<!--    <input type="number" th:field="*{user_id}" placeholder="Amount" />-->
+<!--    <button type="submit">Pay now</button>-->
+
+<!--</form>-->
+
+
+<table style="width:50%;border: 1px solid black;text-align: center;">
+    <tr>
+        <th>User_id</th>
+        <th>User_name</th>
+        <th>Amount</th>
+    </tr>
+    <th:block th:each="var : ${obj}">
+        <tr>
+            <td th:text="${var.id}">...</td>
+            <td th:text="${var.username}">...</td>
+            <td th:text="${var.amount}">...</td>
+        </tr>
+
+    </th:block>
+    
+</table>
+
+
+<a href="/payments/paydue">due pyaments</a>
+<!--<h1><td th:text="${x}">...</td></h1>-->
+
+<a href="/reports">Reports</a>
+
+</body>
+</html>

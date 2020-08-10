@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>eSociety</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Welcome </h1>
+<br>
+<h1> In reports page..</h1>
+<!--<%int year = Calendar.getInstance().get(Calendar.YEAR);-->
+<!--%>-->
+<br>
+
+<form action="/reports/yreports">
+    <input type="text" name = "year"> <br>
+    <input type="submit">
+</form>
+
+<form action="/reports/unpaid_paymemnts">
+    From -
+    <input type = 'date' name = 'from'>
+    to -
+    <input type = 'date' name = 'to'>
+    <input type="submit">
+</form>
+
+<!--<a href=th:text= "/reports/${total}" /reports/><%out.print(year);%></a><br>-->
+<!--<a th:href="@{'/reports/'+${year}}"> hello </a>-->
+<!--<a href="/reports/<%out.print(year - 1);%>"><%out.print(year - 1);%></a>-->
+<!--<a href="/reports/<%out.print(year - 2);%>"><%out.print(year - 2);%></a>-->
+<!--<a href="/reports/<%out.print(year - 3);%>"><%out.print(year - 3);%></a>-->
+<!--<a href="/reports/<%out.print(year - 4);%>"><%out.print(year - 4);%></a>-->
+<!--<a href="/reports/<%out.print(year - 5);%>"><%out.print(year - 5);%></a>-->
+
+
+
+</body>
+</html>

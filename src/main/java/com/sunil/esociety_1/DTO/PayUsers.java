@@ -22,6 +22,7 @@ public class PayUsers {
     private int id;
     private double amount;
     private Date paid_at;
+    private String email;
 
 
     public PayUsers(String username, int id, double amount) {
@@ -36,9 +37,11 @@ public class PayUsers {
         this.paid_at = paid_at;
     }
 
-    public PayUsers(String username)
+    public PayUsers(String username,int id,String email)
     {
         this.username = username;
+        this.id = id;
+        this.email = email;
     }
 
     //    public PayUsers(String username, int id) {

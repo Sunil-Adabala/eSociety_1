@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Registration Form</title>
     <!-- link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" /-->
@@ -14,17 +13,13 @@
 
     <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
         <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post" class="form-signin" role="form">
-            <h3 class="form-signin-heading">Registration Form</h3>
+            <h3 class="form-signin-heading">Add manager Form</h3>
             <div class="form-group">
                 <div class="">
-                    <input type="text" th:field="*{name}" placeholder="Name" class="form-control" />
+                    <input type="text" th:field="*{username}" placeholder="User Name" class="form-control" />
                 </div>
             </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control" />
-                </div>
-            </div>
+
             <div class="form-group">
                 <div class="">
                     <input type="text" th:field="*{email}" placeholder="Email" class="form-control" />
@@ -37,18 +32,29 @@
             </div>
             <div class="form-group">
                 <div class="">
+                    <input type="text" th:field="*{society_id}" placeholder="Society_id" class="form-control" />
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="radio" id="male" th:field="*{role}" class="form-control" name="role" value="Admin" >
+                    <label for="male">Admin</label><br>
+                    <input type="radio" id="female" th:field="*{role}" class="form-control" name="role" value="Manager">
+                    <label for="female">Manager</label><br>
+<!--                    <input type="text" th:field="*{role}" placeholder="role" class="form-control" />-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
                     <button type="submit" class="btn btn-primary btn-block">Register User</button>
                 </div>
             </div>
-            <span th:utext="${successMessage}"></span>
-            <div class="alert alert-success alert-dismissible col-sm-12"
-                 th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
-                <button type="button" class="close" data-dismiss="alert"
-                        aria-hidden="true">×</button>
-                <ul th:each="data : ${bindingResult.getAllErrors()}">
-                    <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
-                </ul>
-            </div>
+
+
         </form>
     </div>
 </div>

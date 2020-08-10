@@ -13,6 +13,7 @@
 <h1> In reports page..</h1>
 <%int year = Calendar.getInstance().get(Calendar.YEAR);
 %>
+
 <br>
 
 <form action="/yreports">

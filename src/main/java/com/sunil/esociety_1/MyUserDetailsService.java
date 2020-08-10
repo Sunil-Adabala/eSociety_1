@@ -18,10 +18,13 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Users user = usersDao.findByUsername(username);
+//        System.out.println(user);
         if(user == null)
         {
+            System.out.println("here");
             throw new UsernameNotFoundException("User 404");
         }
+
 
 
         return new UserPrincipal(user);

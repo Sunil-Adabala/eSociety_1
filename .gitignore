@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### Private files
+/src/main/java/com/sunil/esociety_1/EmailPassword.java

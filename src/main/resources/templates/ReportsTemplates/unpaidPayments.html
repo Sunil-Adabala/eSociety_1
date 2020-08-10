@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>eSociety</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>hEYYYYY</h1>
+<!--<h1 th:text="${unpaid_obj}"> </h1>-->
+
+<table style="width:50%;border: 1px solid black;text-align: center;">
+    <tr>
+        <th>User_id</th>
+        <th>User_name</th>
+        <th>Email id</th>
+    </tr>
+    <th:block th:each="var : ${unpaid_obj}">
+        <tr>
+            <td th:text="${var.id}">...</td>
+            <td th:text="${var.username}">...</td>
+            <td th:text="${var.email}">...</td>
+        </tr>
+
+    </th:block>
+</table>
+</body>
+</html>

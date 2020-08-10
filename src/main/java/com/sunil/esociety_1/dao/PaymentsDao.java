@@ -13,5 +13,8 @@ public interface PaymentsDao extends JpaRepository<Payments,Integer> {
 //    @Query("SELECT YEAR(paid_at) FROM Payments WHERE YEAR(paid_at) = :yr")
 //    List<Integer> getYearReports(Integer yr);
 
+    @Query("SELECT sum(amount) FROM Payments where Month(paid_at) = :month and user_id = :id")
+    Double getPaidAmount(Integer id,Integer month);
+
 
 }

@@ -1,5 +1,6 @@
 package com.sunil.esociety_1;
 
+import com.sunil.esociety_1.dao.UsersDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,46 +30,60 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Value("$(spring.queries.roles-query)")
-    public String roleQuery;
+//    @Value("$(spring.queries.roles-query)")
+//    public String roleQuery;
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
 
     @Bean
     public AuthenticationProvider authProvider()
     {
+
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+        provider.setPasswordEncoder(new BCryptPasswordEncoder());
 //        No encryption NoOpPasswordEncoder.getInstance()
 //        to use bcrypt - new BCryptPasswordEncoder()
         return provider;
     }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http.authorizeRequests()
-                // URLs matching for access rights
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/home/**").hasAnyAuthority("SUPER_USER", "ADMIN_USER", "SITE_USER")
-                .anyRequest().authenticated()
-                .and()
-                // form login
-                .csrf().disable().formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .and()
-                // logout
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and()
-                .exceptionHandling()
-                .accessDeniedPage("/access-denied");
-    }
+//
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception{
+//        http.authorizeRequests().antMatchers("/").permitAll();
+//    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        System.out.println("HEL");
+//
+//        http.authorizeRequests()
+//                // URLs matching for access rights
+//                .antMatchers("/").permitAll()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/register").permitAll()
+//                .antMatchers("/home/**").hasAnyAuthority("SUPER_USER", "ADMIN_USER", "SITE_USER")
+//                .anyRequest().authenticated()
+//                .and()
+//                // form login
+//                .csrf().disable().formLogin()
+//                .loginPage("/login")
+//                .failureUrl("/login?error=true")
+//                .defaultSuccessUrl("/reports")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .and()
+//                // logout
+//                .logout().invalidateHttpSession(true)
+//                .clearAuthentication(true)
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/login").and()
+//                .exceptionHandling()
+//                .accessDeniedPage("/access-denied");
+//    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
