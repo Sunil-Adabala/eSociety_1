@@ -27,6 +27,17 @@ public class Users {
     private Timestamp created_at;
     private int society_id;
     private String role;
+    private int manager_id;
+
+
+
+    public List<Payments> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payments> payments) {
+        this.payments = payments;
+    }
 
     public String getRole() {
         return role;
@@ -42,8 +53,11 @@ public class Users {
     @JoinColumn(name ="user_id",referencedColumnName = "id")
     private List<Payments> payments;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "auth_user_role", joinColumns = @JoinColumn(name = "auth_user_id"), inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "auth_user_role",
+            joinColumns = @JoinColumn(name = "auth_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
     private Set<AuthRole> roles;
 
 //    public Users() {
@@ -99,6 +113,15 @@ public class Users {
     public void setSociety_id(int society_id) {
         this.society_id = society_id;
     }
+
+    public int getManager_id() {
+        return manager_id;
+    }
+
+    public void setManager_id(int manager_id) {
+        this.manager_id = manager_id;
+    }
+
 
     public Set<AuthRole> getRoles() {
         return roles;

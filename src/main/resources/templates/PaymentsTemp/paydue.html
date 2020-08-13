@@ -9,13 +9,13 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/paydue}" th:object="${payments}" method="post" class="form-signin" role="form">
+<form action="#" th:action="@{/payments/paydue}" th:object="${payments}" method="post" class="form-signin" role="form">
 
     <h2>Your due is <p th:text= "${totalAmount}" ></p></h2>
     <input type="number" th:field="*{amount}" placeholder="Amount" />
-    <input type="number" th:field="*{manager_id}" placeholder="Manager_id" />
-    <input type="number" th:field="*{society_id}" placeholder="Society_id" />
-    <input type="number" th:field="*{user_id}" placeholder="user_id" />
+<!--    <input type="number" th:field="*{manager_id}" placeholder="Manager_id" />-->
+<!--    <input type="number" th:field="*{society_id}" placeholder="Society_id" />-->
+<!--    <input type="number" th:field="*{user_id}" placeholder="user_id" />-->
     <button type="submit">Pay now</button>
 
 </form>

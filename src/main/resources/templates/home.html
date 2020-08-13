@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>home</title>
@@ -10,9 +10,24 @@
 <body>
 <h1>Welcome </h1>
 <br>
+<div sec:authorize="hasAnyAuthority('ADMIN','MANAGER')">
 
+    <a href="/addmonthlyactivity">Add monthly Activity</a>
+    <a href="/addyearlyactivity">Add yearly Activity</a>
+    <a href="/reports">Reports</a>
+</div>
+
+<div sec:authorize="hasAnyAuthority('ADMIN')">
+    <a href="/addsociety">Add Society</a>
+    <a href="/addmanager">Add Manager</a>
+</div>
 <a href="/payments">Payments</a>
-<a href="/reports">Reports</a>
+
+<form action="/logout">
+
+    <button type="submit">logout</button>
+
+</form>
 
 <!--<a href="/paymenthistory">Payment History</a>-->
 <!--<a href="/reports">Reports</a>-->

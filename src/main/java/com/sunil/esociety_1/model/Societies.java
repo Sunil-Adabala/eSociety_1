@@ -1,9 +1,12 @@
 package com.sunil.esociety_1.model;
 
+import lombok.AllArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
+@AllArgsConstructor
 @Entity
 public class Societies {
 

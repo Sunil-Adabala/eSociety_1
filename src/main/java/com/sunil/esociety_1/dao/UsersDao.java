@@ -6,6 +6,7 @@ import com.sunil.esociety_1.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
@@ -32,12 +33,18 @@ public interface UsersDao extends JpaRepository<Users,Integer> {
     int getTotalmembers(int society_id);
 
     Users findByUsername(String username);
+//    SELECT u FROM User u WHERE u.username = :username
+    @Query("SELECT u FROM Users u WHERE u.username = :username")
+    Users getUserByUsername(@Param("username") String username);
 
     @Query("SELECT society_id FROM Users where username = :username")
     int getSocietyId(String username);
 
     @Query("SELECT id FROM Users where username = :username")
     int getUserId(String username);
+
+    @Query("SELECT manager_id FROM Users where username= :username")
+    int getManagerId(String username);
 
 
 

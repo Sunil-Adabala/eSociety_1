@@ -1,38 +1,50 @@
 package com.sunil.esociety_1;
 
 
+import com.sunil.esociety_1.model.AuthRole;
 import com.sunil.esociety_1.model.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 public class UserPrincipal implements UserDetails {
 
-    private Users user;
+    private Users users;
 
     public UserPrincipal(Users user) {
         super();
-        this.user = user;
+        this.users = user;
     }
 
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+//    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        Set<AuthRole> roles = users.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (AuthRole role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getRole()));
+        }
+
+        return authorities;
     }
+
 
     @Override
     public String getPassword() {
 //        System.out.println(getPassword());
-        return user.getPassword();
+        return users.getPassword();
     }
 
     @Override
     public String getUsername() {
 //        System.out.println(getUsername());
-        return user.getUsername();
+        return users.getUsername();
     }
 
 
@@ -61,7 +73,7 @@ public class UserPrincipal implements UserDetails {
     @Override
     public String toString() {
         return "UserPrincipal{" +
-                "user=" + user +
+                "user=" + users +
                 '}';
     }
 }

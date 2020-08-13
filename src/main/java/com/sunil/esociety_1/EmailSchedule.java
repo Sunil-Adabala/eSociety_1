@@ -21,7 +21,7 @@ public class EmailSchedule {
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
 
-    @Scheduled(cron = "0/10 * * * * ?") //0 0 */6 ? * *
+    @Scheduled(cron = "0 0 8 5,6,7,8,9,10 * ?")
     public void scheduleTaskWithCronExpression() {
 
         List<String> emails=usersDao.getEmailOfAllusers();

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,8 +31,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter
     @Autowired
     private UserDetailsService userDetailsService;
 
-//    @Value("$(spring.queries.roles-query)")
-//    public String roleQuery;
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsServiceImpl();
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -41,21 +44,42 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter
     }
 
     @Bean
-    public AuthenticationProvider authProvider()
+    public DaoAuthenticationProvider authenticationProvider()
     {
 
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(new BCryptPasswordEncoder());
+        DaoAuthenticationProvider authprovider = new DaoAuthenticationProvider();
+        authprovider.setUserDetailsService(userDetailsService());
+        authprovider.setPasswordEncoder(new BCryptPasswordEncoder());
 //        No encryption NoOpPasswordEncoder.getInstance()
 //        to use bcrypt - new BCryptPasswordEncoder()
-        return provider;
+        return authprovider;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
     }
 //
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception{
-//        http.authorizeRequests().antMatchers("/").permitAll();
-//    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception{
+        http.authorizeRequests()
+                .antMatchers("/admin").hasAuthority("ADMIN")
+                .antMatchers("/user").hasAuthority("MANAGER")
+                .anyRequest().authenticated()
+                //                .antMatchers("/payments/paydue").hasAuthority("MANAGER")
+                .and()
+                .formLogin()
+                .failureUrl("/login?error=true")
+                .defaultSuccessUrl("/home")
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .clearAuthentication(true)
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/access-denied");
+    }
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        System.out.println("HEL");

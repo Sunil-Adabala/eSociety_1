@@ -12,7 +12,7 @@
 <div class="container-fluid" style="margin-top: 30px;">
 
     <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
-        <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post" class="form-signin" role="form">
+        <form autocomplete="off" action="#" th:action="@{/addmanager}" th:object="${user}" method="post" class="form-signin" role="form">
             <h3 class="form-signin-heading">Add manager Form</h3>
             <div class="form-group">
                 <div class="">
@@ -39,12 +39,12 @@
 
 
             <div class="form-group">
-                <div class="">
-                    <input type="radio" id="male" th:field="*{role}" class="form-control" name="role" value="Admin" >
-                    <label for="male">Admin</label><br>
-                    <input type="radio" id="female" th:field="*{role}" class="form-control" name="role" value="Manager">
-                    <label for="female">Manager</label><br>
-<!--                    <input type="text" th:field="*{role}" placeholder="role" class="form-control" />-->
+<!--                <div class="">-->
+<!--                    <input type="radio" id="admin" th:field="*{role}" class="form-control" name="role" value="Admin" >-->
+<!--                    <label for="admin">Admin</label><br>-->
+<!--                    <input type="radio" id="manager" th:field="*{role}" class="form-control" name="role" value="Manager">-->
+<!--                    <label for="manager">Manager</label><br>-->
+                    <input type="text" th:field="*{role}" placeholder="role" class="form-control" />
                 </div>
             </div>
 

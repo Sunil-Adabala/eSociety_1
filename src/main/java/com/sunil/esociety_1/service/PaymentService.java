@@ -98,7 +98,7 @@ public class PaymentService {
 
     public List<Integer> getCurrentLoggedInUserDetails()
     {
-        //getCurrentLoggedInSocietyId() returns list[society_id,user)id]
+        //getCurrentLoggedInSocietyId() returns list[society_id,user_id,manager_id]
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String username;
@@ -112,9 +112,11 @@ public class PaymentService {
         }
         int societyId = usersDao.getSocietyId(username);
         int user_id = usersDao.getUserId(username);
+        int manager_id = usersDao.getManagerId(username);
         List<Integer> loggedInUserDetails = new ArrayList<Integer>();
         loggedInUserDetails.add(societyId);
         loggedInUserDetails.add(user_id);
+        loggedInUserDetails.add(manager_id);
 //        List<Users> userDetails = usersDao.getCurrentUserDetails(username);
 //        System.out.println("userdets->"+userDetails);
 

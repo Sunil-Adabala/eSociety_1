@@ -46,7 +46,9 @@ public class PaymentsController {
 
     @RequestMapping(value="/payments/paydue", method= RequestMethod.POST)
     public ModelAndView paydue(@Valid Payments payments, BindingResult bindingResult, ModelMap modelMap) {
-        System.out.println(modelMap);
+        payments.setManager_id(paymentService.getCurrentLoggedInUserDetails().get(2));
+        payments.setSociety_id(paymentService.getCurrentLoggedInUserDetails().get(0));
+        payments.setUser_id(paymentService.getCurrentLoggedInUserDetails().get(1));
         paymentsDao.save(payments);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("payments", new Payments());
@@ -56,7 +58,6 @@ public class PaymentsController {
 
     @RequestMapping(value="/payments/paydue", method= RequestMethod.GET)
     public ModelAndView paydue() {
-        Payments payments2 = new Payments();
         ModelAndView mv = new ModelAndView("/PaymentsTemp/paydue");
 //        ModelAndView modelAndView = new ModelAndView();
         Double totalAmountToPay = (paymentService.total() - paymentService.getamountToPay());
