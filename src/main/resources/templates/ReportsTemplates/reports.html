@@ -4,39 +4,108 @@
 <head>
     <title>eSociety</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lemonada">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-<h1>Welcome </h1>
-<br>
-<h1> In reports page..</h1>
-<!--<%int year = Calendar.getInstance().get(Calendar.YEAR);-->
-<!--%>-->
-<br>
+<body style="background-color: #393e46; margin-left: 5%; margin-top: 5%;">
+<div class="container" style="margin-left: 5%; margin-top: 5%;" >
+    <h1 style="color: white; margin-top: 3%;">Reports page</h1>
+    <!--<%int year = Calendar.getInstance().get(Calendar.YEAR);-->
+    <!--%>-->
+    <br>
 
-<form action="/reports/yreports">
-    <input type="text" name = "year"> <br>
-    <input type="submit">
-</form>
+    <div style="margin-bottom: 100px">
 
-<form action="/reports/unpaid_paymemnts">
-    From -
-    <input type = 'date' name = 'from'>
-    to -
-    <input type = 'date' name = 'to'>
-    <input type="submit">
-</form>
 
-<!--<a href=th:text= "/reports/${total}" /reports/><%out.print(year);%></a><br>-->
-<!--<a th:href="@{'/reports/'+${year}}"> hello </a>-->
-<!--<a href="/reports/<%out.print(year - 1);%>"><%out.print(year - 1);%></a>-->
-<!--<a href="/reports/<%out.print(year - 2);%>"><%out.print(year - 2);%></a>-->
-<!--<a href="/reports/<%out.print(year - 3);%>"><%out.print(year - 3);%></a>-->
-<!--<a href="/reports/<%out.print(year - 4);%>"><%out.print(year - 4);%></a>-->
-<!--<a href="/reports/<%out.print(year - 5);%>"><%out.print(year - 5);%></a>-->
+        <form action="/reports/yreports">
+            <h2 style="color: white; margin-top: 3%;line-height: 0.2;">Year-wise Reports</h2>
+            <label style=" margin-top: 5%; color: white; margin-right: 1%;font-size: 30px" >Select Year</label>
+            <input type="text" name = "year" style="margin-top: 3%; margin-right: 2%;"/>
+            <button class="btn btn-lg btn-light " type="submit">Submit</button>
+            <!--        <input type="text" name = "year"> <br>-->
+            <!--        <input type="submit">-->
+        </form>
+
+    </div>
+
+    <div style="margin-top: 100px">
+
+        <h2 style="color: white; margin-top: 3%;line-height: 0.7;">Select Duration to get Details of Unpaid Users</h2>
+        <form action="/reports/unpaid_paymemnts">
+            <label style=" margin-top: 5%; color: white; margin-right: 1%;font-size: 30px" >From</label>
+            <input type="date" name = 'from'/>
+            <label style="margin-left: 3%; color: white; margin-right: 1%;font-size: 30px" >To</label>
+            <input type="date" name = "to"/>
+            <button class="btn btn-lg btn-light " type="submit" style="margin-left: 1%;">Submit</button>
+            <!--        From - -->
+            <!--        <input type = 'date' name = 'from'>-->
+            <!--        to - -->
+            <!--        <input type = 'date' name = 'to'>-->
+            <!--        <input type="submit">-->
+        </form>
+
+
+    </div>
+
+
+
+</div>
+
+<!--    <div>-->
+<!--        <nav class="navbar navbar-expand-lg bg-dark">-->
+<!--            <a class="navbar-brand" href="/" style="color: white; font-family: Lemonada;">eSociety-->
+<!--            </a>-->
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse"-->
+<!--                    data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"-->
+<!--                    aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+<!--            <div class="navbar-nav ml-auto">-->
+<!--                <a class="nav-item nav-link " href="#"-->
+<!--                   style="color: white;">Reports</a> <a class="nav-item nav-link"-->
+<!--                                                        href="#" style="color: white;">Payments</a> <a-->
+<!--                    class="nav-item nav-link" href="#"-->
+<!--                    style="color: white;">Logout</a>-->
+<!--            </div>-->
+<!--        </nav>-->
+<!--    </div>-->
+
+<!--    <div class="container" style="margin-left: 5%; margin-top: 5%;" >-->
+<!--        <form action="#">-->
+<!--            <h3 style="color: white; margin-top: 3%;">Reports page</h3><input type="text" style="margin-top: 3%; margin-right: 2%;"/> <button class="btn btn-sm btn-light " type="submit">Submit</button>-->
+<!--        </form>-->
+<!--        <form action="#">-->
+<!--            <label style=" margin-top: 5%; color: white; margin-right: 1%;" >From</label><input type="date" />-->
+<!--            <label style="margin-left: 3%; color: white; margin-right: 1%;">To</label><input type="date" />-->
+<!--            <button class="btn btn-sm btn-light " type="submit" style="margin-left: 1%;">Submit</button>-->
+<!--        </form>-->
+<!--    </div>-->
+
+    <!--<a href=th:text= "/reports/${total}" /reports/><%out.print(year);%></a><br>-->
+    <!--<a th:href="@{'/reports/'+${year}}"> hello </a>-->
+    <!--<a href="/reports/<%out.print(year - 1);%>"><%out.print(year - 1);%></a>-->
+    <!--<a href="/reports/<%out.print(year - 2);%>"><%out.print(year - 2);%></a>-->
+    <!--<a href="/reports/<%out.print(year - 3);%>"><%out.print(year - 3);%></a>-->
+    <!--<a href="/reports/<%out.print(year - 4);%>"><%out.print(year - 4);%></a>-->
+    <!--<a href="/reports/<%out.print(year - 5);%>"><%out.print(year - 5);%></a>-->
 
 
 
 </body>
 </html>
+
+<!--<form action="/reports/yreports">-->
+<!--    <input type="text" name = "year"> <br>-->
+<!--    <input type="submit">-->
+<!--</form>-->
+
+<!--<form action="/reports/unpaid_paymemnts">-->
+<!--    From - -->
+<!--    <input type = 'date' name = 'from'>-->
+<!--    to - -->
+<!--    <input type = 'date' name = 'to'>-->
+<!--    <input type="submit">-->
+<!--</form>-->

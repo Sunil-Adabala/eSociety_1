@@ -58,7 +58,7 @@ public class PaymentsController {
 
     @RequestMapping(value="/payments/paydue", method= RequestMethod.GET)
     public ModelAndView paydue() {
-        ModelAndView mv = new ModelAndView("/PaymentsTemp/paydue");
+        ModelAndView mv = new ModelAndView("/home");
 //        ModelAndView modelAndView = new ModelAndView();
         Double totalAmountToPay = (paymentService.total() - paymentService.getamountToPay());
         System.out.println("------------------"+paymentService.getamountToPay()+"--------------------------------------------");

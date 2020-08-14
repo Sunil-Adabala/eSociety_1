@@ -11,10 +11,12 @@ import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
 @Configuration
 @EnableScheduling
+@EnableWebMvc
 public class Esociety1Application {
 
     public static void main(String[] args) {

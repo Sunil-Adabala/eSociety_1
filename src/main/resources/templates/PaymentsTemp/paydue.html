@@ -3,22 +3,32 @@
 
 <head>
     <title>eSociety</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lemonada">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: #393e46">
+<div class="container" style="margin-left: 5%; margin-top: 5%;" >
+    <form  th:action="@{/payments/paydue}" th:object="${payments}" method="post" class="form-signin" role="form">
+        <h3 style="color: white; margin-top: 3%;">Your due is <p th:text= "${totalAmount}" ></p></h3>
+        <input type="number" th:field="*{amount}" style="margin-top: 3%; margin-right: 2%;"/>
+        <button class="btn btn-sm btn-light " type="submit">Pay now</button>
+    </form>
+</div>
 
-<form action="#" th:action="@{/payments/paydue}" th:object="${payments}" method="post" class="form-signin" role="form">
+<!--<form  th:action="@{/payments/paydue}" th:object="${payments}" method="post" class="form-signin" role="form">-->
 
-    <h2>Your due is <p th:text= "${totalAmount}" ></p></h2>
-    <input type="number" th:field="*{amount}" placeholder="Amount" />
-<!--    <input type="number" th:field="*{manager_id}" placeholder="Manager_id" />-->
-<!--    <input type="number" th:field="*{society_id}" placeholder="Society_id" />-->
-<!--    <input type="number" th:field="*{user_id}" placeholder="user_id" />-->
-    <button type="submit">Pay now</button>
+<!--    <h2>Your due is <p th:text= "${totalAmount}" ></p></h2>-->
+<!--    <input type="number" th:field="*{amount}" placeholder="Amount" />-->
+<!--&lt;!&ndash;    <input type="number" th:field="*{manager_id}" placeholder="Manager_id" />&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="number" th:field="*{society_id}" placeholder="Society_id" />&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="number" th:field="*{user_id}" placeholder="user_id" />&ndash;&gt;-->
+<!--    <button type="submit">Pay now</button>-->
 
-</form>
+<!--</form>-->
 
 </body>
 </html>

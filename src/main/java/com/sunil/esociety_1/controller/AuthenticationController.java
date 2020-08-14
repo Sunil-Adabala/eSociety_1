@@ -1,6 +1,6 @@
 package com.sunil.esociety_1.controller;
 
-import com.sunil.esociety_1.dao.ManagersDao;
+//import com.sunil.esociety_1.dao.ManagersDao;
 import com.sunil.esociety_1.dao.PaymentsDao;
 import com.sunil.esociety_1.dao.SocietiesDao;
 import com.sunil.esociety_1.dao.UsersDao;
@@ -33,8 +33,6 @@ public class AuthenticationController {
     @Autowired
     SocietiesDao societiesDao;
 
-    @Autowired
-    ManagersDao managersDao;
 
 
 //    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
@@ -52,7 +50,7 @@ public class AuthenticationController {
         Users user = new Users();
         modelAndView.addObject("user", user);
         modelAndView.addObject("societies",societiesDao.getSocietyNames());
-        modelAndView.addObject("managers",managersDao.getMangerNames());
+//        modelAndView.addObject("managers",managersDao.getMangerNames());
         modelAndView.setViewName("register"); // resources/template/register.html
         return modelAndView;
     }
@@ -60,7 +58,7 @@ public class AuthenticationController {
     @RequestMapping(value="/register", method=RequestMethod.POST)
     public ModelAndView registerUser(
             @RequestParam(value = "society_name", required = false) String society_name,
-            @RequestParam(value = "manager_name", required = false) String manager_name,
+//            @RequestParam(value = "manager_name", required = false) String manager_name,
             @Valid Users user,
             BindingResult bindingResult,
             ModelMap modelMap)
@@ -71,7 +69,7 @@ public class AuthenticationController {
         System.out.println("society_name ----------------->>>>>>"+society_name);
         System.out.println(societiesDao.getSocietyId(society_name));
         user.setSociety_id(societiesDao.getSocietyId(society_name));
-        user.setManager_id(managersDao.getMangerId(manager_name));
+//        user.setManager_id(managersDao.getMangerId(manager_name));
         if(bindingResult.hasErrors())
         {
             modelAndView.addObject("successMessage", "Please correct the errors in form!");
@@ -81,7 +79,7 @@ public class AuthenticationController {
         {
             modelAndView.addObject("successMessage", "user already exists!");
         }
-//        // we will save the user if, no binding errors
+     // we will save the user if, no binding errors
         else
         {
             userService.saveUser(user);

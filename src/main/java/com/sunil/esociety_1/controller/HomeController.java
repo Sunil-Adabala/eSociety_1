@@ -11,10 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -42,11 +39,19 @@ public class HomeController {
     @Autowired
     SocietiesDao societiesDao;
 
+    @Autowired
+    AuthRoleDao authRoleDao;
+
+    @Autowired
+    AuthUserDao authUserDao;
+
     @GetMapping("/")
     public String welcome() {
 //        emailService.getEmailOfUsers();
         return "welcome";
     }
+
+
 
     @GetMapping("/home")
     public String home(Authentication authentication) {
@@ -146,6 +151,35 @@ public class HomeController {
         yearlyActivitiesDao.save(yearlyActivities);
 //        modelAndView.addObject("societies", new Societies());
         modelAndView.setViewName("home"); // resources/template/register.html
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/addmanagernew", method = RequestMethod.GET)
+    public ModelAndView addManagerNew() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("authuserrole", new AuthRole());
+        modelAndView.addObject("users",usersDao.getAllUsers());
+        modelAndView.addObject("roles",authRoleDao.getAllRoles());
+        modelAndView.setViewName("/addManagerNew");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/addmanagernew", method = RequestMethod.POST)
+    public ModelAndView addManagerNew(@RequestParam(value = "role_name", required = false) String role_name,
+                                      @RequestParam(value = "username", required = false) String username,
+                                      @Valid AuthUserRole authUserRole,
+                                      BindingResult bindingResult,
+                                      ModelMap modelMap)
+
+    {
+        System.out.println("rolename --------> "+role_name+" \n username-----> "+username);
+        authUserRole.setAuth_role_id(authRoleDao.getAuthRoleId(role_name));
+        authUserRole.setAuth_user_id(usersDao.getUserId(username));
+        authUserDao.save(authUserRole);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/home")
+        ;
+//        authUserDao.save(authUserRole);
         return modelAndView;
     }
 
